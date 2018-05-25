@@ -1172,6 +1172,11 @@ function! s:Commit(mods, args, ...) abort
         endif
         let b:fugitive_commit_arguments = args
         setlocal bufhidden=wipe filetype=gitcommit
+        " Start insert mode automatically once editing commit message
+        " -- huangzonghao  Tue Jan 30 15:41:40 EST 2018
+        startinsert
+        " And also enables one keystroke fast save and exit
+        inoremap <buffer> <C-X> <ESC>:wq<CR>
         return '1'
       elseif error ==# '!'
         return s:Status()
